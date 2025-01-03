@@ -74,9 +74,10 @@ Style/Documentation:
 Style/SymbolArray:
   Enabled: false
 
-# 文字列に値が代入されて変わっていないかチェック（無効）
+# 文字列に値が代入されて変わっていないかチェック
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: always
 
 # メソッドパラメータ名の最小文字数を設定
 Naming/MethodParameterName:

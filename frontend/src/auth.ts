@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import axios from "axios";
+import snakecaseKeys from "snakecase-keys";
 
 // User型を拡張してaccessTokenを追加
 declare module "next-auth" {
@@ -40,9 +41,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const name = user.name;
       const githubId = account?.providerAccountId;
       const url = `${process.env.BACKEND_URL}/api/auth/callback/github`;
-
+      const params = snakecaseKeys({ name, github_id: githubId });
       try {
-        const response = await axios.post(url, { name, github_id: githubId });
+        const response = await axios.post(url, params);
         if (response.status === 200) {
           return true;
         } else {

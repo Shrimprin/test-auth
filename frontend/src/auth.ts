@@ -27,10 +27,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.accessToken = account.access_token;
         token.githubId = account.providerAccountId;
       }
-      console.log("--------------account--------------");
-      console.log(account);
-      console.log("--------------token--------------");
-      console.log(token);
       return token;
     },
     async session({ session, token }) {
@@ -38,18 +34,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // セッションが更新された時に呼ばれる
       session.user.accessToken = token.accessToken as string;
       session.user.githubId = token.githubId as number;
-      console.log("--------------session--------------");
-      console.log(session);
       return session;
     },
     async signIn({ user, account }) {
       const name = user.name;
       const githubId = account?.providerAccountId;
       const url = `${process.env.BACKEND_URL}/api/auth/callback/github`;
-      console.log("--------------user--------------");
-      console.log(user);
-      console.log("--------------githubId--------------");
-      console.log(githubId);
 
       try {
         const response = await axios.post(url, { name, github_id: githubId });

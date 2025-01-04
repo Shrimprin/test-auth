@@ -1,5 +1,6 @@
 import React from "react";
 import { signIn, signOut } from "@/auth";
+import { Button } from "@/components/ui/button";
 
 export function SignIn({ provider }: { provider?: string }) {
   return (
@@ -9,7 +10,7 @@ export function SignIn({ provider }: { provider?: string }) {
         await signIn(provider);
       }}
     >
-      <button type="submit">Signin with GitHub</button>
+      <Button type="submit">Signin with GitHub</Button>
     </form>
   );
 }
@@ -23,7 +24,7 @@ export function SignOut() {
         await signOut();
       }}
     >
-      <button type="submit">Sign Out</button>
+      <Button type="submit">Sign Out</Button>
     </form>
   );
 }

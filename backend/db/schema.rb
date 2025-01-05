@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_05_041807) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_05_074144) do
+  create_table "file_item_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id", null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations", null: false
+    t.index ["ancestor_id", "descendant_id", "generations"], name: "file_item_anc_desc_idx", unique: true
+    t.index ["descendant_id"], name: "file_item_desc_idx"
+  end
+
   create_table "file_items", force: :cascade do |t|
     t.integer "repository_id", null: false
     t.string "name", null: false

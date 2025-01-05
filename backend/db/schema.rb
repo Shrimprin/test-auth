@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_04_102956) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_05_041807) do
+  create_table "file_items", force: :cascade do |t|
+    t.integer "repository_id", null: false
+    t.string "name", null: false
+    t.integer "type", null: false
+    t.text "content"
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["repository_id"], name: "index_file_items_on_repository_id"
+  end
+
+  create_table "repositories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.string "url", null: false
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_repositories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -18,4 +39,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_04_102956) do
     t.integer "github_id"
     t.index ["github_id"], name: "index_users_on_github_id", unique: true
   end
+
+  add_foreign_key "file_items", "repositories"
+  add_foreign_key "repositories", "users"
 end

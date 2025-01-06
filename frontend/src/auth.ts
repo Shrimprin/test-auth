@@ -40,7 +40,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async signIn({ user, account }) {
       const name = user.name;
       const githubId = account?.providerAccountId;
-      const url = `${process.env.BACKEND_URL}/api/auth/callback/github`;
+      const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/callback/github`;
       const params = snakecaseKeys({ name, github_id: githubId });
       try {
         const response = await axios.post(url, params);

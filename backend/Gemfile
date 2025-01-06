@@ -44,6 +44,8 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
 end
 
+gem 'active_model_serializers' # APIのレスポンスをJSON形式に変換する
 gem 'closure_tree' # ツリー構造を管理する
 gem 'config' # 環境変数を管理する
+gem 'octokit' # GitHub APIを利用する
 gem 'rack-cors' # クロスオリジンリソース共有を許可する

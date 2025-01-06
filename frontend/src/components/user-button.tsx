@@ -36,8 +36,12 @@ export default async function UserButton() {
               <p className="text-sm font-medium leading-none">
                 {session.user.name}
               </p>
+              {/* // 確認用 */}
               <p className="text-xs leading-none text-muted-foreground">
-                {session.user.email}
+                {session.user.accessToken}
+              </p>
+              <p className="text-xs leading-none text-muted-foreground">
+                {session.user.githubId}
               </p>
             </div>
           </DropdownMenuLabel>

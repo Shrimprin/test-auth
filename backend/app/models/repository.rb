@@ -28,6 +28,12 @@ class Repository < ApplicationRecord
       else
         file_content = client.contents(url, path: file[:path])[:content]
         decoded_file_content = Base64.decode64(file_content).force_encoding('UTF-8')
+
+        # UTF-8エンコーディングの確認と修正
+        unless decoded_file_content.valid_encoding?
+          decoded_file_content = decoded_file_content.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
+        end
+
         file_item_scope.create!(repository: self, name: file_name, type: file_type, content: decoded_file_content)
       end
     end

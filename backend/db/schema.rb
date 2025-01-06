@@ -32,9 +32,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_05_074144) do
 
   create_table "repositories", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.string "url", null: false
-    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_repositories_on_user_id"

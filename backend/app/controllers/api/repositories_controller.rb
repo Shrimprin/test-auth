@@ -5,6 +5,8 @@ module Api
     before_action :set_user, only: %i[create]
 
     def index
+      repositories = Repository.all
+      render json: repositories, each_serializer: RepositoryShortSerializer
     end
 
     def show
@@ -27,7 +29,7 @@ module Api
       repository = Repository.new(user: @user, name: repository_name, url: repository_url)
 
       if repository.save_with_file_items(client)
-        render json: repository, serializer: RepositoryShortSerializer
+        render json: repository, serializer: RepositoryShortSerializer # そもそもidを返すだけならserializerはいらないかも
       else
         render json: repository.errors, status: :unprocessable_entity
       end

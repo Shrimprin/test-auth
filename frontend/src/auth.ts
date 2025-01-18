@@ -20,37 +20,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   basePath: "/api/auth",
   callbacks: {
-    async jwt({ token, account }) {
-      // JWTを生成・更新するために使う
-      // ユーザーがログインした時、またはセッションが更新された時に呼ばれる
-      // GitHub認証に成功したとき、GitHubのAccessTokenを取得する
-      if (account) {
-        token.accessToken = account.access_token;
-        token.githubId = account.providerAccountId;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      // クライアントに返されるセッションオブジェクトをカスタマイズするために使う
-      // セッションが更新された時に呼ばれる
-      session.user.accessToken = token.accessToken as string;
-      session.user.githubId = token.githubId as number;
-      return session;
-    },
-    async signIn({ user, account }) {
-      const name = user.name;
+    async signIn({ user, account, profile }) {
+      const name = profile?.name;
       const githubId = account?.providerAccountId;
       const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/callback/github`;
       const params = snakecaseKeys({ name, github_id: githubId });
       try {
         const response = await axios.post(url, params);
         if (response.status === 200) {
+          user.accessToken = response.data.access_token;
           return true;
         } else {
           return false;
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
         return false;
       }
     },

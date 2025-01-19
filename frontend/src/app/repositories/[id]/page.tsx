@@ -3,7 +3,8 @@
 import type { NextPage } from "next";
 import camelcaseKeys from "camelcase-keys";
 import useSWR from "swr";
-import { fetcher } from "@/utils";
+import { useSession } from "next-auth/react";
+import { fetcher } from "@/utils/fetcher";
 import { FileItemComponent, FileItem } from "./FileItem";
 
 type RepositoryDetailProps = {
@@ -18,8 +19,13 @@ type Repository = {
 
 const RepositoryDetail: NextPage<RepositoryDetailProps> = ({ params }) => {
   const id = params.id;
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/repositories/${id}`;
-  const { data, error } = useSWR(url, fetcher);
+  const url = `/api/repositories/${id}`;
+  const { data: session } = useSession();
+  const accessToken = session?.user?.accessToken;
+  const { data, error } = useSWR(
+    !!accessToken ? [url, accessToken] : null,
+    ([url, accessToken]) => fetcher(url, accessToken)
+  );
 
   if (error) return <div>Error</div>;
   if (!data) return <div>Loading...</div>;

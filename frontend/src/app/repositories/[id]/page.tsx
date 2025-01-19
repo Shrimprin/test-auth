@@ -22,9 +22,8 @@ const RepositoryDetail: NextPage<RepositoryDetailProps> = ({ params }) => {
   const url = `/api/repositories/${id}`;
   const { data: session } = useSession();
   const accessToken = session?.user?.accessToken;
-  const { data, error } = useSWR(
-    !!accessToken ? [url, accessToken] : null,
-    ([url, accessToken]) => fetcher(url, accessToken)
+  const { data, error } = useSWR([url, accessToken], ([url, accessToken]) =>
+    fetcher(url, accessToken)
   );
 
   if (error) return <div>Error</div>;

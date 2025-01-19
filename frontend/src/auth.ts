@@ -7,7 +7,6 @@ import snakecaseKeys from "snakecase-keys";
 declare module "next-auth" {
   interface User {
     accessToken: string;
-    githubId: number;
   }
 }
 
@@ -34,9 +33,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           return false;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error); // toastとかにする
         return false;
       }
+    },
+    async jwt({ token, user }) {
+      if (user?.accessToken) {
+        token.accessToken = user.accessToken;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token.accessToken) {
+        session.user.accessToken = token.accessToken as string;
+      }
+      return session;
     },
   },
 });

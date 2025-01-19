@@ -3,8 +3,8 @@
 import React from "react";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { axiosPost } from "@/lib/axios";
-import { useSession } from "next-auth/react";
+import axios from "axios";
+import { getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 type FormValues = {
@@ -19,20 +19,29 @@ export default function RepositoryForm(): JSX.Element {
   } = useForm<FormValues>();
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const { data: session } = useSession();
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
-    const accessToken = session?.user?.accessToken;
-    const url = "/api/repositories";
-    const postData = {
-      repository: { url: data.url },
-    };
     try {
-      const res = await axiosPost(url, accessToken, postData);
+      const session = await getSession();
+      const githubId = session?.user?.githubId;
+      const accessToken = session?.user?.accessToken;
+      const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/repositories`;
+      const postData = {
+        repository: { url: data.url },
+        github_id: githubId,
+        access_token: accessToken,
+      };
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      const res = await axios.post(url, postData, { headers: headers });
       router.push(`/repositories/${res.data.id}`);
-    } catch (error) {
-      console.log(error);
-      setError("An unexpected error occurred");
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || err.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
     }
   };
 

@@ -2,13 +2,15 @@
 
 module Api
   class RepositoriesController < ApplicationController
+    before_action :set_user, only: %i[create]
+
     def index
-      repositories = @current_user.repositories
+      repositories = Repository.all
       render json: repositories, each_serializer: RepositoryShortSerializer
     end
 
     def show
-      repository = @current_user.repositories.includes(file_items: :children).find(params[:id]) # 子供しかeager loadできていない？
+      repository = Repository.includes(file_items: :children).find(params[:id]) # 子供しかeager loadできていない？
       render json: repository, include: '**' # 再帰的に全てのfile_itemsを取得してシリアライズする
     end
 
@@ -24,7 +26,7 @@ module Api
       repository_url = URI(url).path[1..] # /user/repository
       repository_info = client.repository(repository_url)
       repository_name = repository_info.name
-      repository = Repository.new(user: @current_user, name: repository_name, url: repository_url)
+      repository = Repository.new(user: @user, name: repository_name, url: repository_url)
 
       if repository.save_with_file_items(client)
         render json: repository, serializer: RepositoryShortSerializer # そもそもidを返すだけならserializerはいらないかも
@@ -40,6 +42,10 @@ module Api
     end
 
     private
+
+    def set_user
+      @user = User.find_by(github_id: params[:github_id])
+    end
 
     def repository_params
       params.require(:repository).permit(:url)

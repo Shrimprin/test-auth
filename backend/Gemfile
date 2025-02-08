@@ -36,12 +36,13 @@ group :development, :test do
   gem 'brakeman', require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem 'rubocop-rails-omakase', require: false
-
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rails-omakase', require: false
   gem 'rubocop-rspec', require: false
+
+  gem 'dotenv-rails'
 end
 
 gem 'active_model_serializers' # APIのレスポンスをJSON形式に変換する
@@ -49,4 +50,5 @@ gem 'closure_tree' # ツリー構造を管理する
 gem 'config' # 環境変数を管理する
 gem 'jwt' # JWTを生成・検証する
 gem 'octokit' # GitHub APIを利用する
+gem 'pg'
 gem 'rack-cors' # クロスオリジンリソース共有を許可する

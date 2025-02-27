@@ -40,9 +40,6 @@ export default async function UserButton() {
               <p className="text-xs leading-none text-muted-foreground">
                 {session.user.accessToken}
               </p>
-              <p className="text-xs leading-none text-muted-foreground">
-                {session.user.githubId}
-              </p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem>

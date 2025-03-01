@@ -53,4 +53,4 @@ gem 'octokit' # GitHub APIを利用する
 gem 'pg'
 gem 'rack-cors' # クロスオリジンリソース共有を許可する
 
-gem "dockerfile-rails", ">= 1.7", :group => :development
+gem 'dockerfile-rails', '>= 1.7', group: :development

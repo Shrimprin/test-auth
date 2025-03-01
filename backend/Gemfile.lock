@@ -104,6 +104,8 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     deep_merge (1.2.2)
+    dockerfile-rails (1.7.9)
+      rails (>= 3.0.0)
     dotenv (3.1.7)
     dotenv-rails (3.1.7)
       dotenv (= 3.1.7)
@@ -285,6 +287,7 @@ DEPENDENCIES
   closure_tree
   config
   debug
+  dockerfile-rails (>= 1.7)
   dotenv-rails
   jwt
   octokit

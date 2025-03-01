@@ -1,10 +1,16 @@
-# fly.toml app configuration file generated for test-auth-backend on 2025-02-27T21:24:25+09:00
+# fly.toml app configuration file generated for backend-dry-mountain-1755 on 2025-03-01T15:03:55+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'test-auth-backend'
-primary_region = 'nrt'
+app = 'backend-dry-mountain-1755'
+primary_region = 'iad'
+console_command = '/rails/bin/rails console'
+
+[build]
+
+[deploy]
+  release_command = './bin/rails db:prepare'
 
 [http_service]
   internal_port = 8080
@@ -18,3 +24,7 @@ primary_region = 'nrt'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[[statics]]
+  guest_path = '/rails/public'
+  url_prefix = '/'

@@ -52,3 +52,5 @@ gem 'jwt' # JWTを生成・検証する
 gem 'octokit' # GitHub APIを利用する
 gem 'pg'
 gem 'rack-cors' # クロスオリジンリソース共有を許可する
+
+gem "dockerfile-rails", ">= 1.7", :group => :development

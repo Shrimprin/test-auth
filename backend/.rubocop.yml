@@ -90,3 +90,7 @@ Naming/MethodParameterName:
 # 複数のexpectを許可
 RSpec/MultipleExpectations:
   Enabled: false
+
+# テストファイルのtypeを設定する（書かないとルーティングのヘルパーメソッドが読み込まれない）
+RSpecRails/InferredSpecType:
+  Enabled: false

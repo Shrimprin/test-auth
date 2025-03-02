@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::Repositories' do
+RSpec.describe 'Api::Repositories', type: :request do
   let(:user) { create(:user) }
   let(:headers) { { 'Authorization' => "Bearer #{JsonWebToken.encode(user_id: user.id)}" } }
 

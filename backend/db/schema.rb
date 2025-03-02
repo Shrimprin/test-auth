@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2025_01_05_074144) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "file_item_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id", null: false
     t.integer "descendant_id", null: false
@@ -20,7 +23,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_05_074144) do
   end
 
   create_table "file_items", force: :cascade do |t|
-    t.integer "repository_id", null: false
+    t.bigint "repository_id", null: false
     t.string "name", null: false
     t.integer "type", null: false
     t.text "content"
@@ -31,7 +34,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_05_074144) do
   end
 
   create_table "repositories", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.string "url", null: false
     t.datetime "created_at", null: false

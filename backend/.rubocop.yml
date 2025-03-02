@@ -1,4 +1,8 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
+  - rubocop-rspec_rails
 
 AllCops:
   # 除外するディレクトリ（自動生成されるファイル）
@@ -82,3 +86,7 @@ Style/FrozenStringLiteralComment:
 # メソッドパラメータ名の最小文字数を設定
 Naming/MethodParameterName:
   MinNameLength: 1
+
+# 複数のexpectを許可
+RSpec/MultipleExpectations:
+  Enabled: false

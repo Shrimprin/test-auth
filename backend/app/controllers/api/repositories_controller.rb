@@ -27,7 +27,7 @@ module Api
       repository = Repository.new(user: @current_user, name: repository_name, url: repository_url)
 
       if repository.save_with_file_items(client)
-        render json: repository, serializer: RepositoryShortSerializer # そもそもidを返すだけならserializerはいらないかも
+        render json: repository, serializer: RepositoryShortSerializer, status: :created # そもそもidを返すだけならserializerはいらないかも
       else
         render json: repository.errors, status: :unprocessable_entity
       end

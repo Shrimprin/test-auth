@@ -9,6 +9,7 @@ const config: Config = {
   coverageProvider: "v8",
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  extensionsToTreatAsEsm: [".tsx", ".ts"],
 };
 
 export default createJestConfig(config);

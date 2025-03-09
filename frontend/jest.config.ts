@@ -1,15 +1,24 @@
-import type { Config } from "jest";
-import nextJest from "next/jest.js";
+import nextJest from "next/jest";
+
+const esmPackages = [
+  "node-fetch",
+  "data-uri-to-buffer",
+  "fetch-blob",
+  "formdata-polyfill",
+  "next-auth",
+];
 
 const createJestConfig = nextJest({
   dir: "./",
 });
 
-const config: Config = {
-  coverageProvider: "v8",
-  testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  extensionsToTreatAsEsm: [".tsx", ".ts"],
+const customJestConfig = {
+  moduleDirectories: ["node_modules", "<rootDir>/"],
+  testEnvironment: "jest-environment-jsdom",
 };
 
-export default createJestConfig(config);
+export default async () => ({
+  ...(await createJestConfig(customJestConfig)()),
+  transformIgnorePatterns: [`node_modules/(?!(${esmPackages.join("|")})/)`],
+  // testMatch: ["**/__tests__/**/*.test.tsx"],
+});

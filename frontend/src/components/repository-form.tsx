@@ -19,27 +19,27 @@ export default function RepositoryForm(): JSX.Element {
   } = useForm<FormValues>();
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
-    const accessToken = session?.user?.accessToken;
-    const url = "/api/repositories";
-    const postData = {
-      repository: { url: data.url },
-    };
-    try {
-      const res = await axiosPost(url, accessToken, postData);
-      router.push(`/repositories/${res.data.id}`);
-    } catch (error) {
-      console.log(error);
-      setError("An unexpected error occurred");
-    }
-  };
+  // const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
+  //   const accessToken = session?.user?.accessToken;
+  //   const url = "/api/repositories";
+  //   const postData = {
+  //     repository: { url: data.url },
+  //   };
+  //   try {
+  //     const res = await axiosPost(url, accessToken, postData);
+  //     router.push(`/repositories/${res.data.id}`);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setError("An unexpected error occurred");
+  //   }
+  // };
 
   return (
     <div>
       <h1>Create Repository</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {/* <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
           {...register("url", { required: "URL is required" })}
@@ -52,7 +52,7 @@ export default function RepositoryForm(): JSX.Element {
           Create
         </button>
       </form>
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      {error && <div style={{ color: "red" }}>{error}</div>} */}
     </div>
   );
 }

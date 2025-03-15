@@ -36,21 +36,25 @@ group :development, :test do
   gem 'brakeman', require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem 'dotenv-rails'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rails-omakase', require: false
   gem 'rubocop-rspec', require: false
-
-  gem 'dotenv-rails'
+  gem 'rubocop-rspec_rails', require: false
+  gem 'simplecov', require: false
 end
 
 gem 'active_model_serializers' # APIのレスポンスをJSON形式に変換する
 gem 'closure_tree' # ツリー構造を管理する
 gem 'config' # 環境変数を管理する
+gem 'dockerfile-rails', '>= 1.7', group: :development # デプロイ用
+gem 'faraday-retry' # Faradayのリトライ機能を提供する
 gem 'jwt' # JWTを生成・検証する
 gem 'octokit' # GitHub APIを利用する
 gem 'pg'
 gem 'rack-cors' # クロスオリジンリソース共有を許可する
-
-gem 'dockerfile-rails', '>= 1.7', group: :development

@@ -31,5 +31,13 @@ module Backend
 
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+
+    # RSpecの設定: generate時に不要なspecを作成しない
+    config.generators do |g|
+      g.test_framework :rspec,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+    end
   end
 end

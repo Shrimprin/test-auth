@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Change directory
+        run: cd backend
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:

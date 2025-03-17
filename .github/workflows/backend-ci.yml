@@ -18,7 +18,8 @@ jobs:
         with:
           ruby-version: 3.3.2
           bundler-cache: true
-          bundler-cache-key: backend/Gemfile.lock
+        env:
+          BUNDLE_GEMFILE: backend/Gemfile
       - name: Lint
         run: bundle exec rubocop
 

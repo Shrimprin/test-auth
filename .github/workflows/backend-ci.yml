@@ -18,6 +18,8 @@ jobs:
         with:
           ruby-version: 3.3.2
           bundler-cache: true
+      - name: Bundle install
+        run: bundle install
       - name: Lint
         run: bundle exec rubocop
 

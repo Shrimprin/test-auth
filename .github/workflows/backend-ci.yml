@@ -49,6 +49,8 @@ jobs:
         with:
           ruby-version: 3.3.2
           bundler-cache: true
+        env:
+          BUNDLE_GEMFILE: backend/Gemfile
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Run tests

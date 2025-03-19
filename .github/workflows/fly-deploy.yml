@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+  pull_request: # 検証用
+    branches: ["main"]
 jobs:
   deploy:
     name: Deploy app

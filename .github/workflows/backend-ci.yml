@@ -54,4 +54,6 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Run tests
+        env:
+            RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bundle exec rspec

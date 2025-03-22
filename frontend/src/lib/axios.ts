@@ -13,7 +13,7 @@ export async function axiosGet(url: string, accessToken: string | undefined) {
 export async function axiosPost<P>(
   url: string,
   accessToken: string | undefined,
-  params: P
+  params: P,
 ) {
   const headers = {
     Authorization: `Bearer ${accessToken}`,

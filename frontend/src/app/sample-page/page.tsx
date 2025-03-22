@@ -10,7 +10,7 @@ export default function SamplePage() {
   async function fetchWeather() {
     try {
       const response = await axios.get(
-        "https://weather.tsukumijima.net/api/forecast/city/400040"
+        "https://weather.tsukumijima.net/api/forecast/city/400040",
       );
       console.log("Weather Data:", response.data);
     } catch (error) {

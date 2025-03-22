@@ -18,7 +18,7 @@ const RepositoriesPage: NextPage = () => {
   const { data: session } = useSession();
   const accessToken = session?.user?.accessToken;
   const { data, error } = useSWR([url, accessToken], ([url, accessToken]) =>
-    fetcher(url, accessToken)
+    fetcher(url, accessToken),
   );
 
   if (error) return <div>Error</div>;

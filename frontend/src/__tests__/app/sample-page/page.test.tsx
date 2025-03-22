@@ -50,7 +50,7 @@ describe("SamplePage", () => {
     await screen.findByText(/Sample Page/i);
 
     expect(mockedAxios.get).toHaveBeenCalledWith(
-      "https://weather.tsukumijima.net/api/forecast/city/400040"
+      "https://weather.tsukumijima.net/api/forecast/city/400040",
     );
     expect(mockedAxios.get).toHaveBeenCalledTimes(1);
   });

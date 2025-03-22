@@ -1,10 +1,10 @@
-import NextAuth from "next-auth";
-import GitHub from "next-auth/providers/github";
-import axios from "axios";
-import snakecaseKeys from "snakecase-keys";
+import axios from 'axios';
+import NextAuth from 'next-auth';
+import GitHub from 'next-auth/providers/github';
+import snakecaseKeys from 'snakecase-keys';
 
 // User型を拡張してaccessTokenを追加
-declare module "next-auth" {
+declare module 'next-auth' {
   interface User {
     accessToken: string;
   }
@@ -18,7 +18,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
   ],
-  basePath: "/api/auth",
+  basePath: '/api/auth',
   callbacks: {
     async signIn({ user, account, profile }) {
       const name = profile?.name;

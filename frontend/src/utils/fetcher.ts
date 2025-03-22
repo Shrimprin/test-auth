@@ -1,5 +1,5 @@
-import { AxiosResponse, AxiosError } from "axios";
-import { axiosGet } from "../lib/axios";
+import type { AxiosError, AxiosResponse } from 'axios';
+import { axiosGet } from '../lib/axios';
 
 export const fetcher = (url: string, token: string | undefined) =>
   axiosGet(`${url}`, token)

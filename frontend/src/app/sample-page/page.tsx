@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import axios from "axios";
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function SamplePage() {
   const router = useRouter();
@@ -10,11 +10,11 @@ export default function SamplePage() {
   async function fetchWeather() {
     try {
       const response = await axios.get(
-        "https://weather.tsukumijima.net/api/forecast/city/400040"
+        'https://weather.tsukumijima.net/api/forecast/city/400040',
       );
-      console.log("Weather Data:", response.data);
+      console.log('Weather Data:', response.data);
     } catch (error) {
-      console.error("Error fetching weather data:", error);
+      console.error('Error fetching weather data:', error);
     }
   }
 
@@ -22,7 +22,7 @@ export default function SamplePage() {
     <div>
       <h1>Sample Page</h1>
       <div>
-        <button onClick={() => router.push("/")}>Go to Home</button>
+        <button onClick={() => router.push('/')}>Go to Home</button>
       </div>
       <div>
         <button onClick={fetchWeather}>Fetch Weather</button>

@@ -5,7 +5,8 @@ import camelcaseKeys from 'camelcase-keys';
 import type { NextPage } from 'next';
 import { useSession } from 'next-auth/react';
 import useSWR from 'swr';
-import { FileItem, FileItemComponent } from './FileItem';
+import type { FileItem } from './FileItem';
+import { FileItemComponent } from './FileItem';
 
 type RepositoryDetailProps = {
   params: { id: string };

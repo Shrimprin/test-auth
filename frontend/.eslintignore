@@ -1,4 +1,4 @@
 .eslintrc.json
 next.config.mjs
-tailwind.config.ts
+tailwind.config.mjs
 tsconfig.json

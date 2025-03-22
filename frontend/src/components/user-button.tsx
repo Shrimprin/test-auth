@@ -14,12 +14,12 @@ export default async function UserButton() {
   const session = await auth();
   if (!session?.user) return <SignIn provider="github" />;
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex items-center gap-2">
       <span className="hidden text-sm sm:inline-flex"></span>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative w-8 h-8 rounded-full">
-            <Avatar className="w-8 h-8">
+          <Button variant="ghost" className="relative size-8 rounded-full">
+            <Avatar className="size-8">
               {session.user.image && (
                 <AvatarImage
                   src={session.user.image}

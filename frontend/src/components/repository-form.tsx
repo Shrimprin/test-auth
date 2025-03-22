@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { axiosPost } from "@/lib/axios";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { axiosPost } from '@/lib/axios';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 type FormValues = {
   url: string;
@@ -23,7 +22,7 @@ export default function RepositoryForm(): JSX.Element {
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     const accessToken = session?.user?.accessToken;
-    const url = "/api/repositories";
+    const url = '/api/repositories';
     const postData = {
       repository: { url: data.url },
     };
@@ -32,7 +31,7 @@ export default function RepositoryForm(): JSX.Element {
       router.push(`/repositories/${res.data.id}`);
     } catch (error) {
       console.log(error);
-      setError("An unexpected error occurred");
+      setError('An unexpected error occurred');
     }
   };
 
@@ -42,17 +41,17 @@ export default function RepositoryForm(): JSX.Element {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
-          {...register("url", { required: "URL is required" })}
+          {...register('url', { required: 'URL is required' })}
           placeholder="Enter repository URL"
         />
         {errors.url && (
-          <span style={{ color: "red" }}>{errors.url.message}</span>
+          <span style={{ color: 'red' }}>{errors.url.message}</span>
         )}
         <button type="submit" disabled={isSubmitting}>
           Create
         </button>
       </form>
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      {error && <div style={{ color: 'red' }}>{error}</div>}
     </div>
   );
 }

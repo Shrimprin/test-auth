@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import type { NextPage } from "next";
-import Link from "next/link";
-import useSWR from "swr";
-import { useSession } from "next-auth/react";
-import { fetcher } from "@/utils/fetcher";
-import camelcaseKeys from "camelcase-keys";
+import { fetcher } from '@/utils/fetcher';
+import camelcaseKeys from 'camelcase-keys';
+import type { NextPage } from 'next';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import useSWR from 'swr';
 
 type Repository = {
   id: string;
@@ -14,7 +14,7 @@ type Repository = {
 };
 
 const RepositoriesPage: NextPage = () => {
-  const url = "/api/repositories";
+  const url = '/api/repositories';
   const { data: session } = useSession();
   const accessToken = session?.user?.accessToken;
   const { data, error } = useSWR([url, accessToken], ([url, accessToken]) =>

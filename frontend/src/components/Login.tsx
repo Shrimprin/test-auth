@@ -1,6 +1,6 @@
 // 使っていないので消してok
-import { SignIn, SignOut } from "@/components/auth-button";
-import { auth } from "@/auth";
+import { auth } from '@/auth';
+import { SignIn, SignOut } from '@/components/auth-button';
 
 export default async function Login() {
   const session = await auth();

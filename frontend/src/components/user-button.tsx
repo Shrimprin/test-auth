@@ -1,14 +1,14 @@
-import { Button } from "./ui/button";
+import { auth } from '@/auth';
+import { SignIn, SignOut } from './auth-button';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Button } from './ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { SignIn, SignOut } from "./auth-button";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { auth } from "@/auth";
+} from './ui/dropdown-menu';
 
 export default async function UserButton() {
   const session = await auth();
@@ -23,10 +23,10 @@ export default async function UserButton() {
               {session.user.image && (
                 <AvatarImage
                   src={session.user.image}
-                  alt={session.user.name ?? ""}
+                  alt={session.user.name ?? ''}
                 />
               )}
-              <AvatarFallback>{session.user.name ?? ""}</AvatarFallback>
+              <AvatarFallback>{session.user.name ?? ''}</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>

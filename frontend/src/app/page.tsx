@@ -1,4 +1,4 @@
-import RepositoryForm from "@/components/repository-form";
+import RepositoryForm from '@/components/repository-form';
 
 export default function Home() {
   return (

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import type { NextPage } from "next";
-import camelcaseKeys from "camelcase-keys";
-import useSWR from "swr";
-import { useSession } from "next-auth/react";
-import { fetcher } from "@/utils/fetcher";
-import { FileItemComponent, FileItem } from "./FileItem";
+import { fetcher } from '@/utils/fetcher';
+import camelcaseKeys from 'camelcase-keys';
+import type { NextPage } from 'next';
+import { useSession } from 'next-auth/react';
+import useSWR from 'swr';
+import { FileItem, FileItemComponent } from './FileItem';
 
 type RepositoryDetailProps = {
   params: { id: string };

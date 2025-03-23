@@ -1,12 +1,11 @@
-import React from "react";
-import { signIn, signOut } from "@/auth";
-import { Button } from "@/components/ui/button";
+import { signIn, signOut } from '@/auth';
+import { Button } from '@/components/ui/button';
 
 export function SignIn({ provider }: { provider?: string }) {
   return (
     <form
       action={async () => {
-        "use server";
+        'use server';
         await signIn(provider);
       }}
     >
@@ -20,7 +19,7 @@ export function SignOut() {
     <form
       className="w-full"
       action={async () => {
-        "use server";
+        'use server';
         await signOut();
       }}
     >

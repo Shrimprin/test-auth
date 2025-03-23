@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export type FileItem = {
   id: number;
@@ -10,9 +10,9 @@ export type FileItem = {
 
 export const FileItemComponent: React.FC<{ item: FileItem }> = ({ item }) => {
   return (
-    <div style={{ marginLeft: "20px" }}>
+    <div style={{ marginLeft: '20px' }}>
       <div>
-        {item.type === "dir" ? "📁" : "📄"} {item.name}
+        {item.type === 'dir' ? '📁' : '📄'} {item.name}
       </div>
       {item.children &&
         item.children.map((child) => (

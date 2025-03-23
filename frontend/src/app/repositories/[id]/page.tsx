@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import type { NextPage } from "next";
-import camelcaseKeys from "camelcase-keys";
-import useSWR from "swr";
-import { useSession } from "next-auth/react";
-import { fetcher } from "@/utils/fetcher";
-import { FileItemComponent, FileItem } from "./FileItem";
+import { fetcher } from '@/utils/fetcher';
+import camelcaseKeys from 'camelcase-keys';
+import type { NextPage } from 'next';
+import { useSession } from 'next-auth/react';
+import useSWR from 'swr';
+import type { FileItem } from './FileItem';
+import { FileItemComponent } from './FileItem';
 
 type RepositoryDetailProps = {
   params: { id: string };
@@ -23,7 +24,7 @@ const RepositoryDetail: NextPage<RepositoryDetailProps> = ({ params }) => {
   const { data: session } = useSession();
   const accessToken = session?.user?.accessToken;
   const { data, error } = useSWR([url, accessToken], ([url, accessToken]) =>
-    fetcher(url, accessToken)
+    fetcher(url, accessToken),
   );
 
   if (error) return <div>Error</div>;

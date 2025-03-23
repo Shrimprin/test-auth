@@ -1,4 +1,4 @@
-name: "Backend CI"
+name: Backend CI
 on:
   push:
     branches: ["main"]
@@ -55,5 +55,5 @@ jobs:
         run: bin/rails db:schema:load
       - name: Run tests
         env:
-            RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bundle exec rspec

@@ -1,6 +1,7 @@
 import Page from '@/app/page';
 import { render, screen } from '@testing-library/react';
 import { useSession } from 'next-auth/react';
+
 jest.mock('next-auth/react', () => ({
   useSession: jest.fn(),
 }));
@@ -14,7 +15,12 @@ describe('SamplePage', () => {
     (useSession as jest.Mock).mockReturnValue({
       data: {
         expires: new Date(Date.now() + 2 * 86400).toISOString(),
-        user: { username: 'admin' },
+        user: {
+          accessToken: 'thisisaccesstoken',
+          email: 'hoge@sample.com',
+          image: 'https://avatars.githubusercontent.com/u/123456789?v=4',
+          name: 'Kuroneko',
+        },
       },
     });
     render(<Page />);
